@@ -1,0 +1,6 @@
+habit_tracker/
+├── app.py
+├── database.py
+├── requirements.txt
+└── templates/
+    └── index.html
