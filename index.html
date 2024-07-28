@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Habit Tracker</title>
+</head>
+<body>
+    <h1>Welcome to the AI-Powered Habit Tracker</h1>
+    <form id="habitForm">
+        <input type="text" id="name" placeholder="Habit Name" required>
+        <input type="text" id="frequency" placeholder="Frequency" required>
+        <input type="text" id="user" placeholder="User" required>
+        <button type="submit">Add Habit</button>
+    </form>
+    <script>
+        document.getElementById('habitForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const frequency = document.getElementById('frequency').value;
+            const user = document.getElementById('user').value;
+            fetch('/add_habit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, frequency, user }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
